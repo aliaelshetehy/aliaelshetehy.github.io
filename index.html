@@ -20,48 +20,57 @@
 
       font-family: 'Playfair Display', serif;
       color: #6b4c3b;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    /* FULL SCREEN RESPONSIVE CARD */
+    /* CLOSED CARD */
     .card {
       width: 85vw;
-      max-width: 400px;
-      height: 220px;
-      background: rgba(255,255,255,0.75);
+      max-width: 360px;
+      height: 200px;
+      background: rgba(255,255,255,0.8);
       border: 1px solid #d6c3b3;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Great Vibes', cursive;
-      font-size: 30px;
+      font-size: 28px;
       cursor: pointer;
-      transition: all 1s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
     .card.open {
-      transform: scale(1.8);
+      transform: scale(1.6);
       opacity: 0;
+      transition: 1s ease;
     }
 
-    /* INVITE FULL SCREEN FIX */
+    /* INVITE FULL FIX */
     .invite {
-      position: absolute;
-      width: 90vw;
-      max-width: 500px;
-      text-align: center;
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       opacity: 0;
-      transition: opacity 1.2s ease;
+      pointer-events: none;
+      transition: opacity 1s ease;
     }
 
     .invite.show {
       opacity: 1;
+      pointer-events: auto;
+    }
+
+    .box {
+      width: 90vw;
+      max-width: 420px;
+      text-align: center;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 42px;
+      font-size: 40px;
       margin-bottom: 10px;
     }
 
@@ -71,13 +80,13 @@
     }
 
     input {
-      width: 80%;
-      max-width: 280px;
+      width: 85%;
       padding: 12px;
       font-size: 16px;
       border-radius: 10px;
       border: 1px solid #d6c3b3;
       text-align: center;
+      outline: none;
       margin-top: 10px;
     }
 
@@ -89,12 +98,6 @@
       background: transparent;
       color: #6b4c3b;
       cursor: pointer;
-      font-size: 14px;
-      touch-action: manipulation;
-    }
-
-    button:active {
-      transform: scale(0.97);
     }
 
     #content {
@@ -110,32 +113,34 @@
 </div>
 
 <div class="invite" id="invite">
+  <div class="box">
 
-  <div id="form">
-    <h1>Enter Your Name</h1>
-    <input type="text" id="nameInput" placeholder="Your Name">
-    <br>
-    <button onclick="startInvite()">Enter</button>
+    <div id="form">
+      <h1>Enter Your Name</h1>
+      <input type="text" id="nameInput" placeholder="Your Name">
+      <br>
+      <button onclick="startInvite()">Enter</button>
+    </div>
+
+    <div id="content">
+      <h1 id="title"></h1>
+
+      <p>You Are Invited To Alia Birthday Dinner</p>
+      <p>To Wave Goodbye To Her Teens</p>
+
+      <br>
+
+      <p><strong>Date:</strong> May 13</p>
+      <p><strong>Location:</strong> Luhv Restaurant</p>
+      <p><strong>Dress Code:</strong> All Black</p>
+
+      <br>
+
+      <button onclick="yes()">Yes I Am Coming</button>
+      <button onclick="no()">No Because I Am A Total Loser</button>
+    </div>
+
   </div>
-
-  <div id="content">
-    <h1 id="title"></h1>
-
-    <p>You Are Invited To Alia Birthday Dinner</p>
-    <p>To Wave Goodbye To Her Teens</p>
-
-    <br>
-
-    <p><strong>Date:</strong> May 13</p>
-    <p><strong>Location:</strong> Luhv Restaurant</p>
-    <p><strong>Dress Code:</strong> All Black</p>
-
-    <br>
-
-    <button onclick="yes()">Yes I Am Coming</button>
-    <button onclick="no()">No Because I Am A Total Loser</button>
-  </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -146,11 +151,12 @@
 
     setTimeout(() => {
       document.getElementById("invite").classList.add("show");
-    }, 800);
+    }, 700);
   }
 
   function startInvite() {
-    const name = document.getElementById("nameInput").value;
+    const input = document.getElementById("nameInput");
+    const name = input.value;
 
     if (name.trim() === "") {
       alert("Enter Your Name");
