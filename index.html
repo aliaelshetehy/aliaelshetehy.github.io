@@ -5,102 +5,139 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
 
-      background: #f5efe6;
-      font-family: 'Great Vibes', cursive;
+      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-color: #f5efe6;
+
+      font-family: 'Playfair Display', serif;
       color: #6b4c3b;
       text-align: center;
+      overflow: hidden;
     }
 
     .card {
       width: 85vw;
       max-width: 360px;
       height: 200px;
-      background: white;
+      background: rgba(255,255,255,0.8);
       border: 1px solid #d6c3b3;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
       cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: 0.8s ease;
+    }
+
+    .card.open {
+      transform: scale(1.5);
+      opacity: 0;
     }
 
     .invite {
-      display: none;
       position: fixed;
       inset: 0;
+      display: flex;
       align-items: center;
       justify-content: center;
-      background: #f5efe6;
+
+      background: rgba(245, 239, 230, 0.97);
+
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.8s ease;
+    }
+
+    .invite.show {
+      opacity: 1;
+      visibility: visible;
     }
 
     .box {
-      width: 90%;
-      max-width: 400px;
+      width: 90vw;
+      max-width: 420px;
     }
 
     h1 {
-      font-size: 42px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 40px;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 22px;
+      font-size: 16px;
+      margin: 6px 0;
+      font-family: 'Playfair Display', serif;
     }
 
     input {
-      padding: 10px;
-      font-size: 18px;
-      text-align: center;
+      width: 85%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
       border: 1px solid #d6c3b3;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
     }
 
     button {
-      margin-top: 10px;
-      padding: 10px 20px;
+      margin: 10px;
+      padding: 12px 18px;
+      border-radius: 25px;
       border: 1px solid #6b4c3b;
       background: transparent;
       color: #6b4c3b;
-      font-family: 'Great Vibes', cursive;
-      font-size: 20px;
       cursor: pointer;
+      font-family: 'Playfair Display', serif;
+    }
+
+    #content {
+      display: none;
     }
   </style>
 </head>
 
 <body>
 
-<div class="card" id="card" onclick="openInvite()">
+<div class="card" id="card" onclick="openCard()">
   Open Invitation
 </div>
 
 <div class="invite" id="invite">
+
   <div class="box">
 
-    <h1 id="title"></h1>
-
     <div id="form">
-      <p>Enter Your Name</p>
-      <input type="text" id="nameInput">
+      <h1>Enter Your Name</h1>
+      <input type="text" id="nameInput" placeholder="Your Name">
       <br>
-      <button onclick="start()">Enter</button>
+      <button onclick="startInvite()">Enter</button>
     </div>
 
-    <div id="content" style="display:none;">
+    <div id="content">
+      <h1 id="title"></h1>
+
       <p>You Are Invited To Alia’s Birthday Dinner</p>
       <p>To Wave Goodbye To Her Teens</p>
 
-      <p>Date: May 13</p>
-      <p>Location: Luhv Restaurant</p>
-      <p>Dress Code: All Black</p>
+      <br>
+
+      <p><strong>Date:</strong> May 13</p>
+      <p><strong>Location:</strong> Luhv Restaurant</p>
+      <p><strong>Dress Code:</strong> All Black</p>
+
+      <br>
 
       <button onclick="yes()">Yes I Am Coming</button>
       <button onclick="no()">No Because I Am A Total Loser</button>
@@ -109,16 +146,21 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <script>
-  function openInvite() {
-    document.getElementById("card").style.display = "none";
-    document.getElementById("invite").style.display = "flex";
+  function openCard() {
+    document.getElementById("card").classList.add("open");
+
+    setTimeout(() => {
+      document.getElementById("invite").classList.add("show");
+    }, 600);
   }
 
-  function start() {
-    let name = document.getElementById("nameInput").value;
+  function startInvite() {
+    const name = document.getElementById("nameInput").value;
 
-    if (name === "") {
+    if (name.trim() === "") {
       alert("Enter Your Name");
       return;
     }
@@ -127,10 +169,11 @@
     document.getElementById("content").style.display = "block";
 
     document.getElementById("title").innerText =
-      "Hey " + name.charAt(0).toUpperCase() + name.slice(1) + "’s Invite";
+      "Hey " + name.charAt(0).toUpperCase() + name.slice(1);
   }
 
   function yes() {
+    confetti({ particleCount: 150, spread: 80 });
     alert("See You There");
   }
 
