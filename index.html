@@ -3,54 +3,56 @@
 <head>
   <title>Alia Birthday Invitation</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
 
-      /* Paper texture background */
       background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
       background-color: #f5efe6;
 
       font-family: 'Playfair Display', serif;
       color: #6b4c3b;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
+    /* FULL SCREEN RESPONSIVE CARD */
     .card {
-      width: 340px;
+      width: 85vw;
+      max-width: 400px;
       height: 220px;
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.75);
       border: 1px solid #d6c3b3;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Great Vibes', cursive;
-      font-size: 28px;
+      font-size: 30px;
       cursor: pointer;
       transition: all 1s ease;
-      position: relative;
-      z-index: 2;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .card.open {
-      transform: scale(2);
+      transform: scale(1.8);
       opacity: 0;
     }
 
+    /* INVITE FULL SCREEN FIX */
     .invite {
       position: absolute;
-      opacity: 0;
+      width: 90vw;
+      max-width: 500px;
       text-align: center;
-      transition: opacity 1.5s ease;
-      width: 90%;
-      max-width: 600px;
+      opacity: 0;
+      transition: opacity 1.2s ease;
     }
 
     .invite.show {
@@ -59,62 +61,49 @@
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 48px;
+      font-size: 42px;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 18px;
+      font-size: 16px;
       margin: 6px 0;
     }
 
     input {
-      padding: 10px;
+      width: 80%;
+      max-width: 280px;
+      padding: 12px;
+      font-size: 16px;
       border-radius: 10px;
       border: 1px solid #d6c3b3;
       text-align: center;
+      margin-top: 10px;
     }
 
     button {
       margin: 10px;
-      padding: 10px 20px;
+      padding: 12px 18px;
       border-radius: 25px;
       border: 1px solid #6b4c3b;
       background: transparent;
       color: #6b4c3b;
       cursor: pointer;
+      font-size: 14px;
+      touch-action: manipulation;
     }
 
-    button:hover {
-      background: #6b4c3b;
-      color: white;
+    button:active {
+      transform: scale(0.97);
     }
 
     #content {
       display: none;
     }
-
-    /* CLEAN FLORAL DECOR (FIXED) */
-    .floral {
-      position: absolute;
-      width: 140px;
-      opacity: 0.35;
-      pointer-events: none;
-    }
-
-    .tl { top: 0; left: 0; }
-    .tr { top: 0; right: 0; transform: scaleX(-1); }
-    .bl { bottom: 0; left: 0; transform: scaleY(-1); }
-    .br { bottom: 0; right: 0; transform: scale(-1); }
   </style>
 </head>
 
 <body>
-
-<!-- FLORAL DECOR (CLEAN) -->
-<img class="floral tl" src="https://i.imgur.com/5bXz1sF.png">
-<img class="floral tr" src="https://i.imgur.com/5bXz1sF.png">
-<img class="floral bl" src="https://i.imgur.com/5bXz1sF.png">
-<img class="floral br" src="https://i.imgur.com/5bXz1sF.png">
 
 <div class="card" id="card" onclick="openCard()">
   Open Invitation
