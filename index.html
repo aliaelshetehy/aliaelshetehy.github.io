@@ -12,18 +12,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f5efe6;
+
+      /* Paper texture background */
+      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-color: #f5efe6;
+
       font-family: 'Playfair Display', serif;
       color: #6b4c3b;
       overflow: hidden;
     }
 
-    /* CLOSED CARD */
     .card {
-      width: 320px;
-      height: 200px;
-      background: #e8d8c3;
-      border: 2px solid #6b4c3b;
+      width: 340px;
+      height: 220px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid #d6c3b3;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -33,6 +36,7 @@
       transition: all 1s ease;
       position: relative;
       z-index: 2;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .card.open {
@@ -40,7 +44,6 @@
       opacity: 0;
     }
 
-    /* INVITATION CONTENT */
     .invite {
       position: absolute;
       opacity: 0;
@@ -64,6 +67,13 @@
       margin: 6px 0;
     }
 
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #d6c3b3;
+      text-align: center;
+    }
+
     button {
       margin: 10px;
       padding: 10px 20px;
@@ -79,23 +89,37 @@
       color: white;
     }
 
-    input {
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #d6c3b3;
-      text-align: center;
+    #content {
+      display: none;
     }
+
+    /* CLEAN FLORAL DECOR (FIXED) */
+    .floral {
+      position: absolute;
+      width: 140px;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .tl { top: 0; left: 0; }
+    .tr { top: 0; right: 0; transform: scaleX(-1); }
+    .bl { bottom: 0; left: 0; transform: scaleY(-1); }
+    .br { bottom: 0; right: 0; transform: scale(-1); }
   </style>
 </head>
 
 <body>
 
-<!-- CLOSED CARD -->
+<!-- FLORAL DECOR (CLEAN) -->
+<img class="floral tl" src="https://i.imgur.com/5bXz1sF.png">
+<img class="floral tr" src="https://i.imgur.com/5bXz1sF.png">
+<img class="floral bl" src="https://i.imgur.com/5bXz1sF.png">
+<img class="floral br" src="https://i.imgur.com/5bXz1sF.png">
+
 <div class="card" id="card" onclick="openCard()">
   Open Invitation
 </div>
 
-<!-- INVITATION CONTENT -->
 <div class="invite" id="invite">
 
   <div id="form">
@@ -105,7 +129,7 @@
     <button onclick="startInvite()">Enter</button>
   </div>
 
-  <div id="content" style="display:none;">
+  <div id="content">
     <h1 id="title"></h1>
 
     <p>You Are Invited To Alia Birthday Dinner</p>
