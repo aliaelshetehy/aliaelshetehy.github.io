@@ -1,53 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Alia’s Birthday 🖤</title>
+  <title>Alia’s Birthday 🤎</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     body {
       text-align: center;
-      font-family: Arial;
-      background: black;
-      color: white;
+      background: #f5efe6;
+      color: #6b4c3b;
       margin-top: 100px;
+      font-family: 'Playfair Display', serif;
     }
 
     h1 {
-      font-size: 42px;
-      letter-spacing: 1px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 50px;
     }
 
     p {
-      font-size: 22px;
+      font-size: 20px;
+      margin: 8px;
     }
 
     input {
       padding: 12px;
-      font-size: 18px;
+      font-size: 16px;
       border-radius: 10px;
-      border: none;
+      border: 1px solid #d6c3b3;
       text-align: center;
     }
 
     button {
       padding: 12px 25px;
-      font-size: 18px;
-      border-radius: 12px;
-      border: none;
-      background: white;
-      color: black;
-      margin-top: 15px;
+      font-size: 16px;
+      border-radius: 20px;
+      border: 1px solid #6b4c3b;
+      background: transparent;
+      color: #6b4c3b;
+      margin: 10px;
       cursor: pointer;
       transition: 0.3s;
     }
 
     button:hover {
-      background: #ddd;
+      background: #6b4c3b;
+      color: white;
     }
 
     #invite {
       display: none;
       animation: fadeIn 1.5s;
+    }
+
+    .decor {
+      font-size: 24px;
+      margin-bottom: 15px;
     }
 
     @keyframes fadeIn {
@@ -59,22 +68,38 @@
 
 <body>
 
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div id="form">
-  <h1>Enter your name 🖤</h1>
+  <h1>Enter your name 🤎</h1>
   <input type="text" id="nameInput" placeholder="Your name">
   <br>
   <button onclick="startInvite()">Enter</button>
 </div>
 
 <div id="invite">
+
+  <div class="decor">🎀 🤍 🌿</div>
+
   <h1 id="title"></h1>
 
-  <p>You’re invited to Alia’s Birthday 🎉</p>
-  <p>📅 May 13</p>
-  <p>📍 Luhv Restaurant</p>
-  <p>🖤 Dress Code: All Black</p>
+  <p>You’re invited to Alia’s birthday dinner</p>
+  <p>to wave goodbye to her teens ✨</p>
 
-  <button onclick="party()">I’M COMING</button>
+  <br>
+
+  <p><strong>Date:</strong> May 13</p>
+  <p><strong>Location:</strong> Luhv Restaurant</p>
+  <p><strong>Dress code:</strong> All Black</p>
+
+  <br>
+
+  <button onclick="yes()">Yes I’m coming</button>
+  <button onclick="no()">No because I’m a total loser</button>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -84,22 +109,29 @@
     const name = document.getElementById("nameInput").value;
 
     if (name.trim() === "") {
-      alert("Enter your name first 🖤");
+      alert("Enter your name 🤎");
       return;
     }
 
     document.getElementById("form").style.display = "none";
     document.getElementById("invite").style.display = "block";
 
-    document.getElementById("title").innerText = "Hey " + name + " 🖤";
+    document.getElementById("title").innerText = "Hey " + name + " 🤎";
+
+    // PLAY MUSIC 🎵
+    document.getElementById("bgMusic").play();
   }
 
-  function party() {
+  function yes() {
     confetti({
       particleCount: 150,
       spread: 80
     });
-    alert("See you there 🖤");
+    alert("Can’t wait to see you 🤎✨");
+  }
+
+  function no() {
+    alert("Rude. Try again.");
   }
 </script>
 
