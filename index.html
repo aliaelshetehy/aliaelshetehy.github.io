@@ -3,7 +3,6 @@
 <head>
   <title>Alia Birthday Invitation</title>
 
-  <!-- Elegant Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
@@ -13,43 +12,56 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      /* Beige paper texture */
-      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-      background-color: #f5efe6;
-
+      background: #f5efe6;
       font-family: 'Playfair Display', serif;
       color: #6b4c3b;
-      text-align: center;
+      overflow: hidden;
     }
 
+    /* CLOSED CARD */
     .card {
+      width: 320px;
+      height: 200px;
+      background: #e8d8c3;
+      border: 2px solid #6b4c3b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      cursor: pointer;
+      transition: all 1s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card.open {
+      transform: scale(2);
+      opacity: 0;
+    }
+
+    /* INVITATION CONTENT */
+    .invite {
+      position: absolute;
+      opacity: 0;
+      text-align: center;
+      transition: opacity 1.5s ease;
       width: 90%;
       max-width: 600px;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid #d6c3b3;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .invite.show {
+      opacity: 1;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 48px;
-      margin-bottom: 10px;
     }
 
     p {
       font-size: 18px;
       margin: 6px 0;
-    }
-
-    input {
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #d6c3b3;
-      border-radius: 10px;
-      text-align: center;
     }
 
     button {
@@ -60,7 +72,6 @@
       background: transparent;
       color: #6b4c3b;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     button:hover {
@@ -68,53 +79,25 @@
       color: white;
     }
 
-    #invite {
-      display: none;
-    }
-
-    /* Floral corners */
-    .corner {
-      position: absolute;
-      width: 90px;
-      opacity: 0.7;
-    }
-
-    .top-left {
-      top: 0;
-      left: 0;
-    }
-
-    .top-right {
-      top: 0;
-      right: 0;
-      transform: scaleX(-1);
-    }
-
-    .bottom-left {
-      bottom: 0;
-      left: 0;
-      transform: scaleY(-1);
-    }
-
-    .bottom-right {
-      bottom: 0;
-      right: 0;
-      transform: scale(-1);
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #d6c3b3;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- CLOSED CARD -->
+<div class="card" id="card" onclick="openCard()">
+  Open Invitation
+</div>
 
-  <!-- Floral Corners -->
-  <img class="corner top-left" src="https://i.imgur.com/5bXz1sF.png">
-  <img class="corner top-right" src="https://i.imgur.com/5bXz1sF.png">
-  <img class="corner bottom-left" src="https://i.imgur.com/5bXz1sF.png">
-  <img class="corner bottom-right" src="https://i.imgur.com/5bXz1sF.png">
+<!-- INVITATION CONTENT -->
+<div class="invite" id="invite">
 
-  <!-- Name Input -->
   <div id="form">
     <h1>Enter Your Name</h1>
     <input type="text" id="nameInput" placeholder="Your Name">
@@ -122,8 +105,7 @@
     <button onclick="startInvite()">Enter</button>
   </div>
 
-  <!-- Invitation -->
-  <div id="invite">
+  <div id="content" style="display:none;">
     <h1 id="title"></h1>
 
     <p>You Are Invited To Alia Birthday Dinner</p>
@@ -146,6 +128,14 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
+  function openCard() {
+    document.getElementById("card").classList.add("open");
+
+    setTimeout(() => {
+      document.getElementById("invite").classList.add("show");
+    }, 800);
+  }
+
   function startInvite() {
     const name = document.getElementById("nameInput").value;
 
@@ -155,7 +145,7 @@
     }
 
     document.getElementById("form").style.display = "none";
-    document.getElementById("invite").style.display = "block";
+    document.getElementById("content").style.display = "block";
 
     document.getElementById("title").innerText =
       "Hey " + name.charAt(0).toUpperCase() + name.slice(1);
