@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alia’s Birthday 🖤</title>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+      background: black;
+      color: white;
+      margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 42px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 22px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 12px;
+      border: none;
+      background: white;
+      color: black;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+
+    #invite {
+      display: none;
+      animation: fadeIn 1.5s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="form">
+  <h1>Enter your name 🖤</h1>
+  <input type="text" id="nameInput" placeholder="Your name">
+  <br>
+  <button onclick="startInvite()">Enter</button>
+</div>
+
+<div id="invite">
+  <h1 id="title"></h1>
+
+  <p>You’re invited to Alia’s Birthday 🎉</p>
+  <p>📅 May 13</p>
+  <p>📍 Luhv Restaurant</p>
+  <p>🖤 Dress Code: All Black</p>
+
+  <button onclick="party()">I’M COMING</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+  function startInvite() {
+    const name = document.getElementById("nameInput").value;
+
+    if (name.trim() === "") {
+      alert("Enter your name first 🖤");
+      return;
+    }
+
+    document.getElementById("form").style.display = "none";
+    document.getElementById("invite").style.display = "block";
+
+    document.getElementById("title").innerText = "Hey " + name + " 🖤";
+  }
+
+  function party() {
+    confetti({
+      particleCount: 150,
+      spread: 80
+    });
+    alert("See you there 🖤");
+  }
+</script>
+
+</body>
+</html>
