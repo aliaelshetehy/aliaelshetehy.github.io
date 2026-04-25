@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Alia Birthday Invitation</title>
+  <title>Alia’s Birthday Invitation</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
+  <!-- Cursive elegant font -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -18,12 +19,14 @@
       background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
       background-color: #f5efe6;
 
-      font-family: 'Playfair Display', serif;
       color: #6b4c3b;
       overflow: hidden;
+
+      /* EVERYTHING CURSIVE */
+      font-family: 'Great Vibes', cursive;
+      text-align: center;
     }
 
-    /* CARD */
     .card {
       width: 85vw;
       max-width: 360px;
@@ -33,8 +36,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 28px;
+      font-size: 32px;
       cursor: pointer;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       transition: 0.8s ease;
@@ -45,7 +47,6 @@
       opacity: 0;
     }
 
-    /* INVITE OVERLAY FIXED */
     .invite {
       position: fixed;
       inset: 0;
@@ -68,28 +69,26 @@
     .box {
       width: 90vw;
       max-width: 420px;
-      text-align: center;
     }
 
     h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 40px;
+      font-size: 48px;
       margin-bottom: 10px;
     }
 
     p {
-      font-size: 16px;
-      margin: 6px 0;
+      font-size: 24px;
+      margin: 8px 0;
     }
 
     input {
       width: 85%;
       padding: 12px;
-      font-size: 16px;
+      font-size: 18px;
       border-radius: 10px;
       border: 1px solid #d6c3b3;
       text-align: center;
-      outline: none;
+      font-family: 'Great Vibes', cursive;
     }
 
     button {
@@ -100,6 +99,8 @@
       background: transparent;
       color: #6b4c3b;
       cursor: pointer;
+      font-size: 20px;
+      font-family: 'Great Vibes', cursive;
     }
 
     button:active {
@@ -132,14 +133,14 @@
     <div id="content">
       <h1 id="title"></h1>
 
-      <p>You Are Invited To Alia's Birthday Dinner</p>
+      <p>You Are Invited To Alia’s Birthday Dinner</p>
       <p>To Wave Goodbye To Her Teens</p>
 
       <br>
 
-      <p><strong>Date:</strong> May 13</p>
-      <p><strong>Location:</strong> Luhv Restaurant</p>
-      <p><strong>Dress Code:</strong> All Black</p>
+      <p>Date: May 13</p>
+      <p>Location: Luhv Restaurant</p>
+      <p>Dress Code: All Black</p>
 
       <br>
 
