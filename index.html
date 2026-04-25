@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Alia’s Birthday 🤎</title>
+  <title>Alia Birthday Invitation</title>
 
+  <!-- Elegant Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     body {
-      text-align: center;
-      background: #f5efe6;
-      color: #6b4c3b;
-      margin-top: 100px;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* Beige paper texture */
+      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-color: #f5efe6;
+
       font-family: 'Playfair Display', serif;
+      color: #6b4c3b;
+      text-align: center;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 600px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #d6c3b3;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 50px;
+      font-size: 48px;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 20px;
-      margin: 8px;
+      font-size: 18px;
+      margin: 6px 0;
     }
 
     input {
-      padding: 12px;
+      padding: 10px;
       font-size: 16px;
-      border-radius: 10px;
       border: 1px solid #d6c3b3;
+      border-radius: 10px;
       text-align: center;
     }
 
     button {
-      padding: 12px 25px;
-      font-size: 16px;
-      border-radius: 20px;
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 25px;
       border: 1px solid #6b4c3b;
       background: transparent;
       color: #6b4c3b;
-      margin: 10px;
       cursor: pointer;
       transition: 0.3s;
     }
@@ -51,54 +70,76 @@
 
     #invite {
       display: none;
-      animation: fadeIn 1.5s;
     }
 
-    .decor {
-      font-size: 24px;
-      margin-bottom: 15px;
+    /* Floral corners */
+    .corner {
+      position: absolute;
+      width: 90px;
+      opacity: 0.7;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    .top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .top-right {
+      top: 0;
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    .bottom-left {
+      bottom: 0;
+      left: 0;
+      transform: scaleY(-1);
+    }
+
+    .bottom-right {
+      bottom: 0;
+      right: 0;
+      transform: scale(-1);
     }
   </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<div class="card">
 
-<div id="form">
-  <h1>Enter your name 🤎</h1>
-  <input type="text" id="nameInput" placeholder="Your name">
-  <br>
-  <button onclick="startInvite()">Enter</button>
-</div>
+  <!-- Floral Corners -->
+  <img class="corner top-left" src="https://i.imgur.com/5bXz1sF.png">
+  <img class="corner top-right" src="https://i.imgur.com/5bXz1sF.png">
+  <img class="corner bottom-left" src="https://i.imgur.com/5bXz1sF.png">
+  <img class="corner bottom-right" src="https://i.imgur.com/5bXz1sF.png">
 
-<div id="invite">
+  <!-- Name Input -->
+  <div id="form">
+    <h1>Enter Your Name</h1>
+    <input type="text" id="nameInput" placeholder="Your Name">
+    <br>
+    <button onclick="startInvite()">Enter</button>
+  </div>
 
-  <div class="decor">🎀 🤍 🌿</div>
+  <!-- Invitation -->
+  <div id="invite">
+    <h1 id="title"></h1>
 
-  <h1 id="title"></h1>
+    <p>You Are Invited To Alia Birthday Dinner</p>
+    <p>To Wave Goodbye To Her Teens</p>
 
-  <p>You’re invited to Alia’s birthday dinner</p>
-  <p>to wave goodbye to her teens ✨</p>
+    <br>
 
-  <br>
+    <p><strong>Date:</strong> May 13</p>
+    <p><strong>Location:</strong> Luhv Restaurant</p>
+    <p><strong>Dress Code:</strong> All Black</p>
 
-  <p><strong>Date:</strong> May 13</p>
-  <p><strong>Location:</strong> Luhv Restaurant</p>
-  <p><strong>Dress code:</strong> All Black</p>
+    <br>
 
-  <br>
-
-  <button onclick="yes()">Yes I’m coming</button>
-  <button onclick="no()">No because I’m a total loser</button>
+    <button onclick="yes()">Yes I Am Coming</button>
+    <button onclick="no()">No Because I Am A Total Loser</button>
+  </div>
 
 </div>
 
@@ -109,29 +150,24 @@
     const name = document.getElementById("nameInput").value;
 
     if (name.trim() === "") {
-      alert("Enter your name 🤎");
+      alert("Enter Your Name");
       return;
     }
 
     document.getElementById("form").style.display = "none";
     document.getElementById("invite").style.display = "block";
 
-    document.getElementById("title").innerText = "Hey " + name + " 🤎";
-
-    // PLAY MUSIC 🎵
-    document.getElementById("bgMusic").play();
+    document.getElementById("title").innerText =
+      "Hey " + name.charAt(0).toUpperCase() + name.slice(1);
   }
 
   function yes() {
-    confetti({
-      particleCount: 150,
-      spread: 80
-    });
-    alert("Can’t wait to see you 🤎✨");
+    confetti({ particleCount: 150, spread: 80 });
+    alert("See You There");
   }
 
   function no() {
-    alert("Rude. Try again.");
+    alert("Rude. Try Again");
   }
 </script>
 
