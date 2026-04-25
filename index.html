@@ -110,6 +110,11 @@
 
 <body>
 
+<!-- BACKGROUND MUSIC -->
+<audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div class="card" id="card" onclick="openCard()">
   Open Invitation
 </div>
@@ -151,6 +156,13 @@
 <script>
   function openCard() {
     document.getElementById("card").classList.add("open");
+
+    // PLAY MUSIC HERE (FIXED)
+    const music = document.getElementById("bg-music");
+    music.volume = 0.5;
+    music.play().catch(err => {
+      console.log("Autoplay blocked:", err);
+    });
 
     setTimeout(() => {
       document.getElementById("invite").classList.add("show");
